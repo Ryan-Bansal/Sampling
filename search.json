@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "sampling.html",
+    "href": "sampling.html",
+    "title": "Sampling",
+    "section": "",
+    "text": "Estimating the proportion of red beads in the shovel sample, we find that about 34% of the beads are predicted to be red, with a 95% confidence interval ranging from approximately 21% to 47%. This interval reflects the uncertainty inherent in sampling and model assumptions. While this estimate is our best guess based on the data and model, it is important to recognize that real-world factors such as sample size limitations and deviations from model assumptions may affect accuracy. Additional data or information could improve the precision of these estimates. The visualization above presents this estimate and its uncertainty clearly, supporting informed interpretation and decision-making."
+  }
+]
