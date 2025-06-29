@@ -1,0 +1,50 @@
+---
+title: "Sampling"
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+Estimating the proportion of red beads in the shovel sample, we find that about 34% of the beads are predicted to be red, with a 95% confidence interval ranging from approximately 21% to 47%. This interval reflects the uncertainty inherent in sampling and model assumptions. While this estimate is our best guess based on the data and model, it is important to recognize that real-world factors such as sample size limitations and deviations from model assumptions may affect accuracy. Additional data or information could improve the precision of these estimates. The visualization above presents this estimate and its uncertainty clearly, supporting informed interpretation and decision-making.
+
+```{r}
+library(tidymodels)
+library(marginaleffects)
+library(ggplot2)
+library(tibble)
+```
+
+
+```{r}
+# Create the shovel dataset
+shovel <- tibble(
+  color = factor(c(rep("red", 17), rep("white", 33)))
+)
+
+# Fit logistic regression model
+fit_color <- logistic_reg(engine = "glm") %>%
+  fit(color ~ 1, data = shovel)
+```
+
+
+```{r}
+plot_predictions(fit_color, type = "prob", condition = "group") +
+  labs(
+    title = "Predicted Probability of Drawing Red or White Beads",
+    subtitle = "About 34% of beads are predicted to be red — uncertainty shown by error bars",
+    caption = "Data source: Beads sampled using shovel from urn simulation",
+    x = "Bead Color",
+    y = "Predicted Probability"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size = 14),
+    plot.caption = element_text(size = 10, face = "italic"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10)
+  )
+
+```
